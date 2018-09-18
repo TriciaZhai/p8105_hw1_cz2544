@@ -1,11 +1,9 @@
 ---
-title: "p8105_hw1_cz2544"
+title: "P8105_hw1_cz2544"
 author: "Triciazhai"
 date: "9/13/2018"
 output: html_document
 ---
-
-*try something something something*
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
