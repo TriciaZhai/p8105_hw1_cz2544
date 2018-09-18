@@ -5,7 +5,78 @@ date: "9/13/2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+
+# Problem_1 #
+
+##1.1 Create a data frame comprised of:
+  A random sample of size 10 from a uniform[0, 5] distribution
+  A logical vector indicating whether elements of the sample are greater than 2
+  A (length-10) character vector
+  A (length-10) factor vector
+
+```{r hw_1_problem_1.1}
+library(tidyverse)
+hw1_df1 = tibble(
+  vec_samp = c(runif(10, min=0, max=5)),
+  vec_logi = c(vec_samp > 2),
+  vec_char = c(head(month.abb, 10)),
+  vec_fact = factor(c("cold", "cold", "cool", "warm", "warm", "hot", "hot", "hot", "cool", "cool"))
+)
+hw1_df1
+```
+##1.2 Try to take the mean of each variable in the dataframe
+
+```{r hw_1_problem_1.2}
+mean_vec = c(mean(vec_samp), mean(vec_logi), mean(vec_char), mean(vec_fact))
+mean_vec
+```
+Mean value could be achieved for numeric/logical vectors and date, date-time and time interval objects, but not for charactor and factor vectors. For logical vectors, true = 1, and false = 0.
+
+##1.3 Write a code chunk that applies the as.numeric function to the logical, character, and factor variables
+```{r hw_1_problem1.3, results = hide}
+as.numeric(vec_logi)
+as.numeric(vec_char)
+as.numeric(vec_fact)
+```
+
+convert your character variable from character to factor to numeric
+```{r hw_1_problem1.4}
+as.factor(vec_char)
+as.numeric(vec_char)
+```
+When characters are converted to factors, r recognized every different character as a factor level.
+Characters cannot be converted to numbers, so 10 "NA"" is the result.
+
+convert your factor variable from factor to character to numeric
+```{r hw_1_problem1.5}
+as.character(vec_fact)
+as.numeric(vec_fact)
+```
+When factors are converted to charactors, the will be process as words in "", no longer as different levels.
+Factor vecters can be converted to numeric vectoers, as r recognize different factor levels of n, numbers from 1 to n has been asigned to different levels of factors. When convert factor vectors to numeric vectors, the asigned numbers for facter will be the new value.
+
+# Problem_2 #
+
+##2.1Create a data frame comprised of:
+  x: a random sample of size 1000 from a standard Normal distribution
+  y: a random sample of size 1000 from a standard Normal distribution
+  A logical vector indicating whether the x + y > 0
+  A numeric vector created by coercing the above logical vector
+  A factor vector created by coercing the above logical vector
+
+```{r hw_1_problem_2.1}
+hw1_df2 = tibble(
+  x = rnorm(1000),
+  y = rnorm(1000),
+  xy_logi = c(x + y > 2),
+  xy_nume = as.numeric(xy_logi),
+  xy_fact = as.factor(xy_logi)
+)
+hw1_df2
+```
+
+
+{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
