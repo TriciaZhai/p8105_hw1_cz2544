@@ -90,7 +90,7 @@ ggplot(hw1_df2, aes(x, y, color = xy_fact)) + geom_point()
 ```
 
 The color scale for logical and facter vectors are discrete, one color for each value.
-The color scale for numerical vector is a contineous hugh. Although the vector in this case has only two values, it is processed as a contineous variable by r.
+The color scale for numerical vector is a two color gradient. Although the numeric vector in this case has only two values, it is processed as a contineous variable by r.
 
 {r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
