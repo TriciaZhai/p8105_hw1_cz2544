@@ -6,13 +6,14 @@ output: html_document
 ---
 
 
-# Problem_1 #
+## Problem_1 
 
-##1.1 Create a data frame comprised of:
-A random sample of size 10 from a uniform[0, 5] distribution
-A logical vector indicating whether elements of the sample are greater than 2
-A (length-10) character vector
-A (length-10) factor vector
+###1.1 Create a data frame comprised of:
+
+* A random sample of size 10 from a uniform[0, 5] distribution  
+* A logical vector indicating whether elements of the sample are greater than 2  
+* A (length-10) character vector   
+* A (length-10) factor vector   
 
 ```{r hw_1_problem_1.1}
 library(tidyverse)
@@ -24,45 +25,56 @@ hw1_df1 = tibble(
 )
 hw1_df1
 ```
-##1.2 Try to take the mean of each variable in the dataframe
+
+###1.2 Try to take the mean of each variable in the dataframe
 
 ```{r hw_1_problem_1.2}
 mean_vec = c(mean(hw1_df1$vec_samp), mean(hw1_df1$vec_logi), mean(hw1_df1$vec_char), mean(hw1_df1$vec_fact))
 mean_vec
 ```
+
+**Comment:**   
 Mean value could be achieved for numeric/logical vectors and date, date-time and time interval objects, but not for charactor and factor vectors. For logical vectors, true = 1, and false = 0.
 
-##1.3 Write a code chunk that applies the as.numeric function to the logical, character, and factor variables
+###1.3 Write a code chunk that applies the as.numeric function to the logical, character, and factor variables
+
 ```{r hw_1_problem1.3, results='hide'}
 as.numeric(hw1_df1$vec_logi)
 as.numeric(hw1_df1$vec_char)
 as.numeric(hw1_df1$vec_fact)
 ```
 
-convert your character variable from character to factor to numeric
+###1.4 Convert your character variable from character to factor to numeric
+
 ```{r hw_1_problem1.4}
 as.factor(hw1_df1$vec_char)
 as.numeric(hw1_df1$vec_char)
 ```
+
+**Comment:**   
 When characters are converted to factors, r recognized every different character as a factor level.
 Characters cannot be converted to numbers, so 10 "NA"" is the result.
 
-convert your factor variable from factor to character to numeric
+###1.5 Convert your factor variable from factor to character to numeric
+
 ```{r hw_1_problem1.5}
 as.character(hw1_df1$vec_fact)
 as.numeric(hw1_df1$vec_fact)
 ```
+
+**Comment:**   
 When factors are converted to charactors, the will be process as words in "", no longer as different levels.
 Factor vecters can be converted to numeric vectoers, as r recognize different factor levels of n, numbers from 1 to n has been asigned to different levels of factors. When convert factor vectors to numeric vectors, the asigned numbers for facter will be the new value.
 
-# Problem_2 #
+## Problem_2 
 
-##2.1 Create a data frame comprised of:
-x: a random sample of size 1000 from a standard Normal distribution
-y: a random sample of size 1000 from a standard Normal distribution
-A logical vector indicating whether the x + y > 0
-A numeric vector created by coercing the above logical vector
-A factor vector created by coercing the above logical vector
+###2.1 Create a data frame comprised of:
+
+* x: a random sample of size 1000 from a standard Normal distribution   
+* y: a random sample of size 1000 from a standard Normal distribution   
+* A logical vector indicating whether the x + y > 0   
+* A numeric vector created by coercing the above logical vector   
+* A factor vector created by coercing the above logical vector   
 
 ```{r hw_1_problem_2.1}
 set.seed(1234)
@@ -76,21 +88,32 @@ hw1_df2 = tibble(
 hw1_df2
 ```
 
-##2.2  Short description of vectors using inline R code, including: 
-  * the size of the dataset in numbers of rows and columns is `r dim(hw1_df2)`,
-  * the mean and median of x are `r mean(hw1_df2$x)` and `r median(hw1_df2$x)`
-  * the proportion of cases for which the logical vector is TRUE is `r sum(hw1_df2$xy_logi)/length(hw1_df2$xy_logi)`
+###2.2  Short description of vectors using inline R code, including: 
 
-##2.3 Make a scatterplot of y vs x:
+* the size of the dataset in numbers of rows and columns is `r dim(hw1_df2)`,
+* the mean and median of x are `r mean(hw1_df2$x)` and `r median(hw1_df2$x)`
+* the proportion of cases for which the logical vector is TRUE is `r sum(hw1_df2$xy_logi)/length(hw1_df2$xy_logi)`
+
+###2.3 Make a scatterplot of y vs x:
+
 color points using the logical, numeric and factor variables.
+
 ```{r hw_1_problem_2.3}
 ggplot(hw1_df2, aes(x, y, color = xy_logi)) + geom_point() 
 ggplot(hw1_df2, aes(x, y, color = xy_nume)) + geom_point() 
 ggplot(hw1_df2, aes(x, y, color = xy_fact)) + geom_point()
 ```
 
+**Comment:**    
 The color scale for logical and facter vectors are discrete, one color for each value.
-The color scale for numerical vector is a two color gradient. Although the numeric vector in this case has only two values, it is processed as a contineous variable by r.
+The color scale for numerical vector is a two color gradient. Although the numeric vector in this case has only two values, it is processed as a contineous variable by R.
+
+###2.4 Export first scatterplot
+
+```{r hw_1_problem_2.4}
+ggplot(hw1_df2, aes(x, y, color = xy_logi)) + geom_point() 
+ggsave("hw1_df2_plot_1.pdf", path = NULL)
+```
 
 {r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
