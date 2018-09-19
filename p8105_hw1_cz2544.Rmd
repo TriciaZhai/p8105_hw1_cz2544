@@ -2,7 +2,7 @@
 title: "P8105_hw1_cz2544"
 author: "Triciazhai"
 date: "9/13/2018"
-output: html_document
+output: github_document
 ---
 
 
