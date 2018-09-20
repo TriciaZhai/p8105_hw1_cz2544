@@ -112,7 +112,7 @@ The color scale for numerical vector is a two color gradient. Although the numer
 
 ```{r hw_1_problem_2.4}
 ggplot(hw1_df2, aes(x, y, color = xy_logi)) + geom_point() 
-ggsave("hw1_df2_plot_1.pdf", path = NULL)
+ggsave("hw1_df2_plot_1.pdf", path = "./plot")
 ```
 
 {r setup, include=FALSE}
